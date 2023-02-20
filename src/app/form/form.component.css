@@ -1,0 +1,107 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.parent {
+    width: 670px;
+    border: 2px solid purple;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: 30px auto 30px auto;
+    border-radius: 10px;
+}
+
+label {
+    font-size: 28px;
+    width: 50%;
+}
+
+input {
+    font-size: 30px;
+    height: 40px;
+    width: 50%;
+    border: none;
+    text-align: center;
+}
+
+input:focus {
+    outline: none;
+    border-bottom: 2px solid purple;
+    /* border-radius: 10px; */
+    /* transition: ease-in 0.3s; */
+}
+
+.field {
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px;
+    margin: 20px;
+}
+
+.symptoms {
+    width: 670px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.symptom {
+    font-size: 28px;
+    margin: 5px;
+    text-align: center;
+    padding: 3px;
+    border: 2px solid purple;
+    background-color: purple;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 2px 2px black;
+    cursor: pointer;
+}
+
+.delete {
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    margin: 10px;
+    border-radius: 50%;
+    background-color: red;
+}
+
+.oursymptom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: 40px;
+    font-size: 25px;
+    color: white;
+    border-radius: 5px;
+    background-color: purple;
+    border: 2px solid purple;
+}
+
+.other {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.others {
+    margin: 0;
+}

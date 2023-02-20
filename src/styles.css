@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: thiswebsitefont;
+    src: url("myfontface.otf") format("opentype");
+}
+
+* {
+    font-family: thiswebsitefont;
+}
+

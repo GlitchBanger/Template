@@ -1,0 +1,39 @@
+<div class="parent">
+    <div class="field">
+        <label for="attacks">No. of Attacks:</label>
+        <input 
+            type="number" 
+            id="attacks" 
+            placeholder="Enter Number" 
+            [(ngModel)]="no_of_attacks"
+        />
+    </div>
+    <div class="field">
+        <label for="duration">Duration of Headaches:</label>
+        <input 
+            type="number" 
+            id="duration" 
+            placeholder="Enter Duration"
+            [(ngModel)]="duration"
+        />
+    </div>
+    <div class="field">
+        <label for="other">Any other symptoms:</label>
+        <input 
+            type="text" 
+            id="other" 
+            placeholder="Search Symptoms"
+            [(ngModel)]="others"
+            (ngModelChange)="onOtherChange()"
+        />
+    </div>
+    <div class="other">
+        <div *ngFor="let other of our_symptoms" class="oursymptom">
+            <p class="others">{{other}}</p>
+            <div class="delete"></div>
+        </div>
+    </div>
+</div>
+<div class="symptoms">
+    <p class="symptom" *ngFor="let s of listed_symptom" (click)="insertSymptom(s)">{{s}}</p>
+</div>
