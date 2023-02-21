@@ -54,7 +54,11 @@ input:focus {
     margin: 20px auto;
     align-items: center;
     justify-content: center;
-    border: 2px solid pink;
+    border-bottom: 2px solid purple;
+    border-right: 2px solid purple;
+    border-left: 2px solid rgb(194, 7, 194);
+    border-top: 2px solid rgb(194, 7, 194);
+    box-shadow: 2px 2px black;
     border-radius: 5px;
 }
 
