@@ -56,12 +56,13 @@ input:focus {
 }
 
 .symptoms {
-    width: 670px;
+    width: 700px;
     display: flex;
     flex-wrap: wrap;
     margin: 20px auto;
     align-items: center;
     justify-content: center;
+    border: 2px solid pink;
 }
 
 .symptom {
