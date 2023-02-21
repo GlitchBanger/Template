@@ -41,8 +41,8 @@ input:focus {
     margin: 30px auto 20px auto;
     border-bottom: 2px solid purple;
     border-right: 2px solid purple;
-    border-left: 2px solid pink;
-    border-top: 2px solid pink;
+    border-left: 2px solid rgb(194, 7, 194);
+    border-top: 2px solid rgb(194, 7, 194);
     box-shadow: 2px 2px black;
     border-radius: 30px;
 }
