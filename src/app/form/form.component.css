@@ -47,6 +47,7 @@ input:focus {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     padding: 5px;
     margin: 30px auto 20px auto;
     border: 2px solid purple;
