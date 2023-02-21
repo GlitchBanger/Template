@@ -76,7 +76,6 @@ input:focus {
     width: 20px;
     height: 20px;
     font-size: 15px;
-    margin: 10px;
     text-align: center;
     display: flex;
     align-items: flex-end;
@@ -113,5 +112,5 @@ svg {
 }
 
 .others {
-    margin: 0;
+    margin: 0px 0px 0px 5px;
 }
