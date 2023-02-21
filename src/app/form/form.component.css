@@ -23,13 +23,13 @@ input[type=number] {
 
 label {
     font-size: 28px;
-    width: 50%;
+    width: 40%;
 }
 
 input {
     font-size: 30px;
     height: 40px;
-    width: 50%;
+    width: 40%;
     border: none;
     text-align: center;
 }
