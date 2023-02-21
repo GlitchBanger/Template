@@ -49,6 +49,7 @@ input:focus {
 
 .symptoms {
     width: 700px;
+    min-height: 300px;
     display: flex;
     flex-wrap: wrap;
     margin: 20px auto;
