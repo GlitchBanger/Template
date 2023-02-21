@@ -9,18 +9,6 @@ input[type=number] {
     appearance: textfield;
 }
 
-.parent {
-    width: 670px;
-    border: 2px solid purple;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    margin: 30px auto 30px auto;
-    border-radius: 10px;
-}
-
 label {
     font-size: 25px;
     text-align: center;
@@ -51,7 +39,11 @@ input:focus {
     justify-content: center;
     padding: 5px;
     margin: 30px auto 20px auto;
-    border: 2px solid purple;
+    border-bottom: 2px solid purple;
+    border-right: 2px solid purple;
+    border-left: 2px solid pink;
+    border-top: 2px solid pink;
+    box-shadow: 2px solid black;
     border-radius: 30px;
 }
 
