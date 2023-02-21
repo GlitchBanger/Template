@@ -50,6 +50,7 @@ input:focus {
     padding: 5px;
     margin: 30px auto 20px auto;
     border: 2px solid purple;
+    border-radius: 30px;
 }
 
 .symptoms {
