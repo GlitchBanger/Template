@@ -43,7 +43,7 @@ input:focus {
     border-right: 2px solid purple;
     border-left: 2px solid pink;
     border-top: 2px solid pink;
-    box-shadow: 2px solid black;
+    box-shadow: 2px 2px black;
     border-radius: 30px;
 }
 
