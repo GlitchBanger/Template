@@ -75,12 +75,17 @@ input:focus {
 .delete {
     width: 20px;
     height: 20px;
-    font-size: 20px;
+    font-size: 15px;
     margin: 10px;
     text-align: center;
     display: flex;
-    align-items: center;
-    justify-content: flex-end;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+svg {
+    height: 15px;
+    width: 15px;
 }
 
 .oursymptom {
