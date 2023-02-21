@@ -102,8 +102,8 @@ svg {
     font-size: 25px;
     color: white;
     border-radius: 5px;
-    background-color: purple;
-    border: 2px solid purple;
+    background-color: rgb(180, 86, 180);
+    border: 2px solid rgb(180, 86, 180);
     margin: 5px;
     box-shadow: 2px 2px black;
 }
