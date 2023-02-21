@@ -6,6 +6,7 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 .parent {
@@ -92,6 +93,8 @@ input:focus {
     border-radius: 5px;
     background-color: purple;
     border: 2px solid purple;
+    margin: 5px;
+    box-shadow: 2px 2px black;
 }
 
 .other {

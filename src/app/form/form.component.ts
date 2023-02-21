@@ -43,5 +43,14 @@ export class FormComponent {
 
   insertSymptom(symptom: string): void {
     this.our_symptoms.push(symptom);
+    this.all_symptoms = this.all_symptoms.filter(e => e !== symptom);
+    this.listed_symptom = this.all_symptoms;
+    this.others = "";
+  }
+
+  deleteSymptom(symptom: string): void {
+    this.all_symptoms.push(symptom);
+    this.our_symptoms = this.our_symptoms.filter(e => e !== symptom);
+    this.listed_symptom = this.all_symptoms;
   }
 }

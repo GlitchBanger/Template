@@ -30,7 +30,7 @@
     <div class="other">
         <div *ngFor="let other of our_symptoms" class="oursymptom">
             <p class="others">{{other}}</p>
-            <div class="delete"></div>
+            <div class="delete" (click)="deleteSymptom(other)"></div>
         </div>
     </div>
 </div>
