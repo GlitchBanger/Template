@@ -1,12 +1,12 @@
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 input[type=number] {
-  -moz-appearance: textfield;
-  appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
 }
 
 .parent {
@@ -42,7 +42,7 @@ input:focus {
 }
 
 .field {
-    width: 95%;
+    width: 500px;
     display: flex;
     flex-direction: row;
     align-items: center;
