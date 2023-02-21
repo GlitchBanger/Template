@@ -49,7 +49,7 @@ input:focus {
     align-items: center;
     padding: 5px;
     margin: 30px auto 20px auto;
-    border: purple;
+    border: 2px solid purple;
 }
 
 .symptoms {
