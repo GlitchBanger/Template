@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { faX } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-form',
@@ -25,6 +26,8 @@ export class FormComponent {
   listed_symptom: string[] = [];
 
   our_symptoms: string[] = [];
+
+  x_icon = faX;
 
   ngOnInit(): void {
     this.listed_symptom = this.all_symptoms;
