@@ -10,9 +10,11 @@ input[type=number] {
 }
 
 label {
-    font-size: 25px;
+    font-size: 30px;
     text-align: center;
-    width: 45%;
+    margin-bottom: 55px;
+    color: blueviolet;
+    width: 60%;
 }
 
 input {
@@ -21,30 +23,25 @@ input {
     width: 45%;
     border: none;
     text-align: center;
+    border-bottom: 2px dotted blueviolet;
 }
 
 input:focus {
     outline: none;
     border-bottom: 2px solid purple;
     /* border-radius: 10px; */
-    /* transition: ease-in 0.3s; */
+    transition: ease-in 0.5s;
 }
 
 .field {
-    width: 600px;
-    height: 75px;
+    width: auto;
+    height: 250px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     padding: 5px;
     margin: 30px auto 20px auto;
-    border-bottom: 2px solid purple;
-    border-right: 2px solid purple;
-    border-left: 2px solid rgb(194, 7, 194);
-    border-top: 2px solid rgb(194, 7, 194);
-    box-shadow: 2px 2px black;
-    border-radius: 30px;
 }
 
 .symptoms {
@@ -56,12 +53,6 @@ input:focus {
     margin: 20px auto;
     align-items: center;
     justify-content: center;
-    border-bottom: 2px solid purple;
-    border-right: 2px solid purple;
-    border-left: 2px solid rgb(194, 7, 194);
-    border-top: 2px solid rgb(194, 7, 194);
-    box-shadow: 2px 2px black;
-    border-radius: 5px;
 }
 
 .symptom {
@@ -119,4 +110,37 @@ svg {
 
 .others {
     margin: 0px 0px 0px 5px;
+}
+
+button {
+    height: 40px;
+    font-size: 20px;
+    font-weight: 1000;
+    margin-top: 40px;
+    margin-left: 37vw;
+    border-radius: 20px;
+    padding: 0px 10px 0px 10px;
+    border: none;
+    background-color: blueviolet;
+    color: white;
+    box-shadow: 0px 3px purple;
+}
+
+button:hover {
+    background-color: rgba(137, 43, 226, 0.76);
+    box-shadow: 0px 3px rgba(128, 0, 128, 0.76);
+}
+
+.centered {
+    margin-top: 20vh;
+}
+
+button:active {
+    box-shadow: none;
+    transform: translate(0px, 3px);
+}
+
+span {
+    margin: 5px;
+    color: red;
 }
