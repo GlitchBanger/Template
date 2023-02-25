@@ -40,6 +40,10 @@ export class FormComponent {
       this.placeholder = this.field.placeholder;
       this.question = this.field.question;
     }
+
+    if (this.field === null) {
+      this.router.navigate(['result']);
+    }
   }
 
   onOtherChange(): void {

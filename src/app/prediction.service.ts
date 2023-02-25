@@ -14,8 +14,8 @@ export class PredictionService {
     this.model = await tf.loadLayersModel('../assets/my-model/model.json');
   }
 
-  async predict(input: number[]): Promise<string> {
+  async predict(input: number[]): Promise<number> {
     let prediction = this.model.predict(tf.tensor3d(input, [1, 1, 8])) as tf.Tensor;
-    return prediction.dataSync()[0] > 0.5 ? "Probable Migraine" : "Migraine Without Aura";
+    return prediction.dataSync()[0];
   }
 }

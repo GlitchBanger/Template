@@ -9,7 +9,7 @@ import { PredictionService } from '../prediction.service';
 })
 export class PredictComponent {
 
-  prediction = "";
+  prediction = 0;
 
   constructor(private predictor: PredictionService, private fields: FieldsService) { }
 
