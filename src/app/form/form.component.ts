@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import * as tf from '@tensorflow/tfjs';
 import { Field } from '../field';
@@ -31,7 +32,7 @@ export class FormComponent {
 
   x_icon = faX;
 
-  constructor(private service: FieldsService) { }
+  constructor(private service: FieldsService, private router: Router) { }
 
   ngOnInit(): void {
     this.field = this.service.getField();
@@ -52,11 +53,25 @@ export class FormComponent {
       this.error = "";
       return;
     }
+
+    let lmodel = this.model.toLowerCase();
+
+    if (this.model === "") {
+      this.listed_symptom = this.field.selectList;
+    }
+
+    if (this.listed_symptom) {
+      this.listed_symptom = this.listed_symptom.filter(symptom => {
+        let s = symptom.toLowerCase();
+        return s.includes(lmodel);
+      });
+    }
   }
 
   insertSymptom(symptom: string): void {
     this.our_symptoms.push(symptom);
-    if (this.listed_symptom !== null) this.listed_symptom = this.listed_symptom?.filter(s => s !== symptom);
+    if (this.listed_symptom !== null)
+      this.listed_symptom = this.listed_symptom?.filter(s => s !== symptom);
     this.others = "";
   }
 
@@ -66,11 +81,27 @@ export class FormComponent {
   }
 
   onNext() {
-    if (this.model === "") return;
-    this.model = "";
+    if (this.field?.hasExtra && this.model === "") {
+      this.error = "Fields can't be empty";
+      return;
+    }
+
+    if (this.field?.hasExtra) {
+      this.service.addEntry(+this.model);
+      this.model = "";
+    }
+
     this.field = this.service.getField();
+
+    if (this.field == null) {
+      this.service.addEntries(this.our_symptoms);
+      this.router.navigate(['result']);
+      return;
+    }
+
     if (this.field?.isSelect) {
       this.listed_symptom = this.field.selectList;
+      return;
     }
   }
 }

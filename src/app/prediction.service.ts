@@ -11,11 +11,11 @@ export class PredictionService {
   constructor() { }
 
   async loadModel() {
-    this.model = await tf.loadLayersModel('../../assets/my-model/model.json');
+    this.model = await tf.loadLayersModel('../assets/my-model/model.json');
   }
 
-  async predict() {
-    let prediction = this.model.predict(tf.tensor3d([5, 3, 1, 0, 0, 1, 1, 0], [1, 1, 8])) as tf.Tensor;
-    console.log(prediction.dataSync()[0] > 0.5 ? "Migraine" : "Semi Migraine")
+  async predict(input: number[]): Promise<string> {
+    let prediction = this.model.predict(tf.tensor3d(input, [1, 1, 8])) as tf.Tensor;
+    return prediction.dataSync()[0] > 0.5 ? "Probable Migraine" : "Migraine Without Aura";
   }
 }

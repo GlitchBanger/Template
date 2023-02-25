@@ -6,9 +6,18 @@ import { Field } from './field';
 })
 export class FieldsService {
 
-
+  symptoms = [
+    "Unilateral location",
+    "Pulsating",
+    "Moderate/severe pain",
+    "Restriction of physical activities",
+    "Nausea/vomitting",
+    "Photophobia/Phonophobia"
+  ]
 
   currentField: (Field | null) = null;
+
+  entries: number[] = [];
 
   field1: Field = {
     question: 'How many times did you get Migraine attacks?',
@@ -35,7 +44,7 @@ export class FieldsService {
     placeholder: 'Eg. pain',
     extra: '',
     isSelect: true,
-    selectList: ['something', 'something else'],
+    selectList: this.symptoms,
     hasExtra: false,
     name: 'symptoms'
   }
@@ -59,5 +68,22 @@ export class FieldsService {
     }
 
     return null;
+  }
+
+  addEntry(entry: number) {
+    this.entries.push(entry);
+  }
+
+  addEntries(symptoms: string[]) {
+    this.symptoms.forEach(symptom => {
+      if (symptoms.includes(symptom)) {
+        this.entries.push(1);
+        return;
+      }
+
+      this.entries.push(0);
+    });
+
+    console.log(this.entries);
   }
 }
