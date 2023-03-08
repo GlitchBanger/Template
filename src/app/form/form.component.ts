@@ -129,6 +129,8 @@ export class FormComponent {
     this.no_of_attacks = "";
     this.duration = "";
     this.prediction = "";
+    this.our_symptoms = [];
+    this.listed_symptoms = this.all_symptoms;
   }
 
 }
