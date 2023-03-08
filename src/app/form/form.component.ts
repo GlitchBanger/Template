@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { faX } from '@fortawesome/free-solid-svg-icons';
+import { faX, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import * as tf from '@tensorflow/tfjs';
 import { Field } from '../field';
 import { FieldsService } from '../fields.service';
@@ -42,6 +42,9 @@ export class FormComponent {
   error = "";
 
   x_icon = faX;
+
+  back_icon = faArrowLeft;
+
   buttonclass = "";
 
   constructor(private router: Router, private predictor: PredictionService) { }
