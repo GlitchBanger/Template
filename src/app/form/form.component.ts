@@ -117,6 +117,7 @@ export class FormComponent {
       this.prediction = `${prediction < 0.5 ? `Probable Migraine with probability ${`${100 * (1 - prediction)}`.slice(0, 5)}` : `Migraine With aura with probability ${`${100 * prediction}`.slice(0, 5)}`} %`;
       if (this.prediction) this.loading = false;
       console.log(this.prediction);
+      this.entries = [];
     } catch (e) {
       await sleep(1000);
       this.loading = false;
