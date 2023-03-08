@@ -1,138 +1,85 @@
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+div {
+    width: 50%;
+    margin: 10px auto 10px auto;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 }
 
-input[type=number] {
-    -moz-appearance: textfield;
-    appearance: textfield;
+.field {
+    display: flex;
+    height: 50px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.symptom-field {
+    height: 150px;
+}
+
+.symptom {
+    display: flex;
+    height: fit-content;
+    width: fit-content;
+    padding: 5px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    border: 1px solid blueviolet;
+    background-color: blueviolet;
+    color: white;
 }
 
 label {
-    font-size: 30px;
-    text-align: center;
-    margin-bottom: 55px;
-    color: blueviolet;
-    width: 60%;
+    text-align: left;
+    width: 50%;
+    transform: translate(0px, 9px);
+}
+
+.our_symptoms {
+    width: 100%;
 }
 
 input {
-    font-size: 30px;
-    height: 40px;
-    width: 45%;
-    border: none;
+    width: 50%;
+    font-size: 20px;
     text-align: center;
-    border-bottom: 2px dotted blueviolet;
+    border: none;
+    border-bottom: 1px solid gray;
 }
 
 input:focus {
     outline: none;
     border-bottom: 2px solid purple;
-    /* border-radius: 10px; */
-    transition: ease-in 0.5s;
 }
 
-.field {
-    width: auto;
-    height: 250px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    padding: 5px;
-    margin: 30px auto 20px auto;
+h3 {
+    width: 100%;
+    text-align: center;
 }
 
 .symptoms {
-    width: 700px;
-    min-height: 100px;
-    padding: 20px;
-    display: flex;
+    height: auto;
     flex-wrap: wrap;
-    margin: 20px auto;
-    align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
-.symptom {
-    font-size: 28px;
-    margin: 5px;
-    text-align: center;
-    padding: 3px;
-    border: 2px solid purple;
-    background-color: purple;
-    color: white;
-    border-radius: 5px;
-    box-shadow: 2px 2px black;
-    cursor: pointer;
-}
-
-.delete {
-    width: 20px;
-    height: 20px;
-    font-size: 15px;
-    text-align: center;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-}
-
-svg {
-    height: 15px;
-    width: 15px;
-}
-
-.oursymptom {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: auto;
-    height: 35px;
-    font-size: 25px;
-    color: white;
-    border-radius: 5px;
-    background-color: rgb(180, 86, 180);
-    border: 2px solid rgb(180, 86, 180);
-    margin: 5px;
-    box-shadow: 2px 2px black;
-}
-
-.other {
-    width: 700px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    margin: 20px auto 30px auto;
-}
-
-.others {
+fa-icon {
     margin: 0px 0px 0px 5px;
+    color: #8a0303;
 }
 
 button {
-    height: 40px;
-    font-size: 20px;
-    font-weight: 1000;
-    margin-top: 40px;
-    margin-left: 37vw;
-    border-radius: 20px;
-    padding: 0px 10px 0px 10px;
-    border: none;
-    background-color: blueviolet;
+    height: 50px;
+    font-size: 25px;
+    margin: 0 auto 0 auto;
+    padding: 10px;
     color: white;
-    box-shadow: 0px 3px purple;
-}
-
-button:hover {
-    background-color: rgba(137, 43, 226, 0.76);
-    box-shadow: 0px 3px rgba(128, 0, 128, 0.76);
-}
-
-.centered {
-    margin-top: 20vh;
+    background-color: rgb(136, 9, 104);
+    border: 1px solid violet;
+    border-radius: 25px;
+    box-shadow: 0px 3px blueviolet;
 }
 
 button:active {
@@ -140,7 +87,35 @@ button:active {
     transform: translate(0px, 3px);
 }
 
-span {
-    margin: 5px;
-    color: red;
+p.error {
+    text-align: center;
+    color: #8a0303;
+    font-weight: bolder;
+}
+
+h3.not-selected {
+    color: rgba(128, 128, 128, 0.582);
+}
+
+div.prediction {
+    position: fixed;
+    margin: 0;
+    background-color: rgba(128, 128, 128, 0.61);
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    z-index: 100;
+}
+
+div.prediction div {
+    height: 200px;
+    padding: 20px;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: white;
+    color: blueviolet;
+    z-index: 101;
 }

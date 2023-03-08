@@ -1,16 +1,34 @@
-<div class="field">
-    <label for="other">{{field?.question}}</label>
-    <input type="text" id="other" [placeholder]="field?.placeholder" [(ngModel)]="model"
-        (ngModelChange)="onOtherChange()" />
-    <span *ngIf="error">{{error}}</span>
-    <button [disabled]="error !==''" (click)="onNext()">Next</button>
-</div>
-<div class="other" *ngIf="field?.isSelect">
-    <div *ngFor="let other of our_symptoms" class="oursymptom">
-        <p class="others">{{other}}</p>
-        <div class="delete" (click)="deleteSymptom(other)"><fa-icon [icon]="x_icon"></fa-icon></div>
+<app-loader *ngIf="loading"></app-loader>
+<div *ngIf="prediction.length !== 0" class="prediction" (click)="onOk()">
+    <div>
+        <p>{{prediction}}</p>
+        <button (click)="onOk()">Ok</button>
     </div>
 </div>
-<div class="symptoms" *ngIf="field?.isSelect">
-    <p class="symptom" *ngFor="let s of listed_symptom" (click)="insertSymptom(s)">{{s}}</p>
+<div class="field">
+    <label for="attacks">How many times did you experience migraine?</label>
+    <input type="text" [(ngModel)]="no_of_attacks" placeholder="Eg. 3" id="attacks">
 </div>
+<div class="field">
+    <label>How long does your migraine last?(in hours)</label>
+    <input type="text" [(ngModel)]="duration" placeholder="Eg. 1">
+</div>
+<div class="field">
+    <label for="">Which other symptoms do you experience?</label>
+    <input type="text" [(ngModel)]="others" (ngModelChange)="onOtherChange()" (keydown.enter)="onEnter()"
+        placeholder="Search Symptoms" id="">
+</div>
+<div class="symptoms">
+    <h3>Selected Symptoms:</h3>
+    <div *ngFor="let symptom of our_symptoms" class="symptom">
+        {{ symptom }}
+        <fa-icon [icon]="x_icon" (click)="onDeleteSymptom(symptom)"></fa-icon>
+    </div>
+    <h3 *ngIf="our_symptoms.length === 0" class="not-selected">No symptoms added</h3>
+</div>
+<div class="symptoms">
+    <h3>and select symptoms from the list below</h3>
+    <div *ngFor="let symptom of listed_symptoms" (click)="onSymptomClick(symptom)" class="symptom">{{ symptom }}</div>
+</div>
+<p class="error" *ngIf="error">{{error}}</p>
+<div><button (click)="onPredict()">Predict</button></div>

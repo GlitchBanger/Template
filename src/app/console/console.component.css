@@ -1,0 +1,30 @@
+:host {
+    margin-top: 35vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+button {
+    height: 40px;
+    font-size: 20px;
+    font-weight: 1000;
+    margin: 20px;
+    border-radius: 20px;
+    padding: 0px 10px 0px 10px;
+    border: none;
+    background-color: blueviolet;
+    color: white;
+    box-shadow: 0px 3px purple;
+}
+
+button:hover {
+    background-color: rgba(137, 43, 226, 0.76);
+    box-shadow: 0px 3px rgba(128, 0, 128, 0.76);
+}
+
+button:active {
+    box-shadow: none;
+    transform: translate(0px, 3px);
+}

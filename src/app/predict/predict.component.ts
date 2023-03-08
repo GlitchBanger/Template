@@ -10,7 +10,8 @@ import { PredictionService } from '../prediction.service';
 export class PredictComponent {
 
   loading = false;
-  prediction = 0;
+  error = false;
+  prediction = "";
 
   constructor(private predictor: PredictionService, private fields: FieldsService) { }
 
@@ -18,10 +19,12 @@ export class PredictComponent {
     try {
       this.loading = true;
       await this.predictor.loadModel();
-      this.prediction = await this.predictor.predict(this.fields.entries);
+      let prediction = await this.predictor.predict(this.fields.entries);
+      this.prediction = `${prediction < 0.5 ? `Probable Migraine with probability ${1 - prediction}` : `Migraine With aura with probability ${prediction}`}`;
       if (this.prediction) this.loading = false;
     } catch (e) {
       this.loading = false;
+      this.error = true;
     }
   }
 

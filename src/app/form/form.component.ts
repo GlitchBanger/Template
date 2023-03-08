@@ -4,7 +4,9 @@ import { faX } from '@fortawesome/free-solid-svg-icons';
 import * as tf from '@tensorflow/tfjs';
 import { Field } from '../field';
 import { FieldsService } from '../fields.service';
+import { PredictionService } from '../prediction.service';
 
+const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
 
 @Component({
   selector: 'app-form',
@@ -15,97 +17,123 @@ export class FormComponent {
   no_of_attacks = "";
   duration = "";
   others = "";
+  loading = false;
+  prediction = "";
 
-  listed_symptom: (string[] | null) = [];
+
+  // symptom = true;
+  // err = false;
+
+  all_symptoms = [
+    "Unilateral location",
+    "Pulsating",
+    "Moderate/severe pain",
+    "Restriction of physical activities",
+    "Nausea/vomitting",
+    "Photophobia/Phonophobia"
+  ]
+
+  listed_symptoms = this.all_symptoms;
 
   our_symptoms: string[] = [];
 
-  model = "";
+  entries: number[] = [];
 
   error = "";
 
-  field: (Field | null) = null;
-
-  question = "";
-
-  placeholder = "";
-
   x_icon = faX;
+  buttonclass = "";
 
-  constructor(private service: FieldsService, private router: Router) { }
+  constructor(private router: Router, private predictor: PredictionService) { }
 
   ngOnInit(): void {
-    this.field = this.service.getField();
-    if (this.field !== null) {
-      this.placeholder = this.field.placeholder;
-      this.question = this.field.question;
-    }
-
-    if (this.field === null) {
-      this.router.navigate(['result']);
-    }
   }
 
-  onOtherChange(): void {
-    if (this.field === null) return;
-
-    if (['attacks', 'duration'].includes(this.field.name)) {
-      if (isNaN(+this.model)) {
-        this.error = "Needs to be a number";
-        return;
-      }
-      this.error = "";
-      return;
-    }
-
-    let lmodel = this.model.toLowerCase();
-
-    if (this.model === "") {
-      this.listed_symptom = this.field.selectList;
-    }
-
-    if (this.listed_symptom) {
-      this.listed_symptom = this.listed_symptom.filter(symptom => {
-        let s = symptom.toLowerCase();
-        return s.includes(lmodel);
-      });
-    }
+  onOtherChange() {
+    this.listed_symptoms = this.all_symptoms.filter(search => conatinsstring(search, this.others) && (!this.our_symptoms.includes(search)))
   }
 
-  insertSymptom(symptom: string): void {
+  onSymptomClick(symptom: string) {
     this.our_symptoms.push(symptom);
-    if (this.listed_symptom !== null)
-      this.listed_symptom = this.listed_symptom?.filter(s => s !== symptom);
+    // this.symptom = false;
+    this.listed_symptoms = this.all_symptoms.filter(symptom => !this.our_symptoms.includes(symptom));
     this.others = "";
   }
 
-  deleteSymptom(symptom: string): void {
-    this.our_symptoms = this.our_symptoms.filter(e => e !== symptom);
-    this.listed_symptom?.push(symptom);
-  }
-
-  onNext() {
-    if (this.field?.hasExtra && this.model === "") {
-      this.error = "Fields can't be empty";
-      return;
-    }
-
-    if (this.field?.hasExtra) {
-      this.service.addEntry(+this.model);
-      this.model = "";
-    }
-
-    this.field = this.service.getField();
-
-    if (this.field == null) {
-      this.service.addEntries(this.our_symptoms);
-      this.router.navigate(['result']);
-      return;
-    }
-
-    if (this.field?.isSelect) {
-      this.listed_symptom = this.field.selectList;
-      return;
+  onEnter() {
+    if (this.listed_symptoms.length == 1) {
+      this.onSymptomClick(this.listed_symptoms[0]);
     }
   }
+
+  onDeleteSymptom(symptom: string) {
+    this.our_symptoms = this.our_symptoms.filter(s => s != symptom);
+    // if (this.our_symptoms.length === 0) this.symptom = true;
+    this.listed_symptoms = this.all_symptoms.filter(s => !this.our_symptoms.includes(s));
+  }
+
+  async onPredict() {
+    console.log("works");
+    console.log(+this.no_of_attacks);
+    console.log(this.no_of_attacks);
+    console.log(+this.duration);
+    console.log(this.duration);
+
+    if (this.no_of_attacks === "" || this.duration === "") {
+      this.error = "No empty number fields allowed";
+      return;
+    }
+
+    if (isNaN(+this.no_of_attacks)) {
+      // this.err = true;
+      this.error = "No. of attacks is a number";
+      console.log(this.error);
+      console.log("did this");
+      return;
+    }
+
+    if (isNaN(+this.duration)) {
+      // this.err = true;
+      this.error = "Duration needs to be a number";
+      console.log("and this");
+      console.log(this.error);
+      return;
+    }
+
+    console.log("they didn't work did they?")
+    // this.err = false;
+    this.error = "";
+
+    this.entries.push(+this.no_of_attacks);
+    this.entries.push(+this.duration);
+    this.all_symptoms.forEach(symptoms => this.entries.push(this.our_symptoms.includes(symptoms) ? 1 : 0));
+
+    console.log(this.entries);
+
+    try {
+      this.loading = true;
+      await this.predictor.loadModel();
+      let prediction = await this.predictor.predict(this.entries);
+      this.prediction = `${prediction < 0.5 ? `Probable Migraine with probability ${`${100 * (1 - prediction)}`.slice(0, 5)}` : `Migraine With aura with probability ${`${100 * prediction}`.slice(0, 5)}`} %`;
+      if (this.prediction) this.loading = false;
+      console.log(this.prediction);
+    } catch (e) {
+      await sleep(1000);
+      this.loading = false;
+      this.error = "Couldn't Predict"
+    }
+  }
+
+  onOk() {
+    this.no_of_attacks = "";
+    this.duration = "";
+    this.prediction = "";
+  }
+
+}
+
+function conatinsstring(search: string, original: string): boolean {
+  let smallsearch = search.toLowerCase();
+  let smalloriginal = original.toLowerCase();
+  return smallsearch.includes(smalloriginal);
 }

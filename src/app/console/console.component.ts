@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-console',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class ConsoleComponent {
 
+  constructor(private router: Router) { }
+
+  onClick() {
+    this.router.navigate(['fields']);
+  }
 }
