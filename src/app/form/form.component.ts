@@ -136,6 +136,10 @@ export class FormComponent {
     this.listed_symptoms = this.all_symptoms;
   }
 
+  onBack() {
+    this.router.navigate(['']);
+  }
+
 }
 
 function conatinsstring(search: string, original: string): boolean {

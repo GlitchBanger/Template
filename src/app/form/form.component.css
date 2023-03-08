@@ -120,6 +120,16 @@ div.prediction div {
     z-index: 101;
 }
 
+button.back {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+}
+
+button.back fa-icon {
+    color: white;
+}
+
 @media only screen and (max-width: 500px) {
     div {
         width: 100%;
