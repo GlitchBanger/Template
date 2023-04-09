@@ -5,6 +5,7 @@ import * as tf from '@tensorflow/tfjs';
 import { Field } from '../field';
 import { FieldsService } from '../fields.service';
 import { PredictionService } from '../prediction.service';
+import { StorageService } from '../storage.service';
 
 const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
 
@@ -17,6 +18,7 @@ export class FormComponent {
   no_of_attacks = "";
   duration = "";
   others = "";
+  assisted = "";
   loading = false;
   prediction = "";
 
@@ -37,6 +39,10 @@ export class FormComponent {
 
   our_symptoms: string[] = [];
 
+  main_symptoms: string[] = [];
+
+  associated: string[] = [];
+
   entries: number[] = [];
 
   error = "";
@@ -47,7 +53,11 @@ export class FormComponent {
 
   buttonclass = "";
 
-  constructor(private router: Router, private predictor: PredictionService) { }
+  constructor(
+    private router: Router,
+    private predictor: PredictionService,
+    private storage: StorageService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -61,6 +71,15 @@ export class FormComponent {
     // this.symptom = false;
     this.listed_symptoms = this.all_symptoms.filter(symptom => !this.our_symptoms.includes(symptom));
     this.others = "";
+    let associated = [
+      "Nausea/vomitting",
+      "Photophobia/Phonophobia"
+    ];
+
+    if (associated.includes(symptom)) this.associated.push(symptom);
+    else this.main_symptoms.push(symptom);
+
+    this.associated.sort((a, b) => a.length - b.length);
   }
 
   onEnter() {
@@ -71,11 +90,13 @@ export class FormComponent {
 
   onDeleteSymptom(symptom: string) {
     this.our_symptoms = this.our_symptoms.filter(s => s != symptom);
+    this.associated = this.associated.filter(s => s != symptom);
+    this.main_symptoms = this.main_symptoms.filter(s => s != symptom);
     // if (this.our_symptoms.length === 0) this.symptom = true;
     this.listed_symptoms = this.all_symptoms.filter(s => !this.our_symptoms.includes(s));
   }
 
-  async onPredict() {
+  onPredict() {
     console.log("works");
     console.log(+this.no_of_attacks);
     console.log(this.no_of_attacks);
@@ -113,19 +134,20 @@ export class FormComponent {
 
     console.log(this.entries);
 
-    try {
-      this.loading = true;
-      await this.predictor.loadModel();
-      let prediction = await this.predictor.predict(this.entries);
-      this.prediction = `${prediction < 0.5 ? `Probable Migraine with probability ${`${100 * (1 - prediction)}`.slice(0, 5)}` : `Migraine With aura with probability ${`${100 * prediction}`.slice(0, 5)}`} %`;
+    this.loading = true;
+    this.storage.storedata(
+      +this.no_of_attacks,
+      +this.duration,
+      this.our_symptoms
+    ).subscribe(rs => {
+      console.log(rs);
+      this.prediction = `${rs < 0.5 ? `Probable Migraine with probability ${`${100 * (1 - rs)}`.slice(0, 5)}` : `Migraine With aura with probability ${`${100 * rs}`.slice(0, 5)}`} %`;
       if (this.prediction) this.loading = false;
-      console.log(this.prediction);
-      this.entries = [];
-    } catch (e) {
-      await sleep(1000);
+    }, err => {
       this.loading = false;
-      this.error = "Couldn't Predict"
-    }
+      console.log(err);
+    })
+
   }
 
   onOk() {
@@ -133,6 +155,8 @@ export class FormComponent {
     this.duration = "";
     this.prediction = "";
     this.our_symptoms = [];
+    this.associated = [];
+    this.main_symptoms = [];
     this.listed_symptoms = this.all_symptoms;
   }
 

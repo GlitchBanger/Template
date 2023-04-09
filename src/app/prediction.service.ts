@@ -11,7 +11,7 @@ export class PredictionService {
   constructor() { }
 
   async loadModel() {
-    this.model = await tf.loadLayersModel('../assets/my-model/model.json');
+    this.model = await tf.loadGraphModel('../assets/my-model/model.json');
   }
 
   async predict(input: number[]): Promise<number> {

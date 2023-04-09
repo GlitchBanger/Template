@@ -15,19 +15,27 @@
     <input type="text" [(ngModel)]="duration" placeholder="Eg. 1">
 </div>
 <div class="field">
-    <label for="">Which other symptoms do you experience?</label>
+    <label for="">Which othersymptoms do you experience?</label>
     <input type="text" [(ngModel)]="others" (ngModelChange)="onOtherChange()" (keydown.enter)="onEnter()"
         placeholder="Search Symptoms" id="">
 </div>
-<div class="symptoms">
-    <h3>Selected Symptoms:</h3>
-    <div *ngFor="let symptom of our_symptoms" class="symptom">
+<div class="symptoms selected">
+    <h3>Main Symptoms:</h3>
+    <div *ngFor="let symptom of main_symptoms" class="symptom">
         {{ symptom }}
         <fa-icon [icon]="x_icon" (click)="onDeleteSymptom(symptom)"></fa-icon>
     </div>
-    <h3 *ngIf="our_symptoms.length === 0" class="not-selected">No symptoms added</h3>
+    <h3 *ngIf="main_symptoms.length === 0" class="not-selected">No symptoms added</h3>
 </div>
-<div class="symptoms">
+<div class="symptoms selected">
+    <h3>Assisted Symptoms:</h3>
+    <div *ngFor="let symptom of associated" class="symptom">
+        {{ symptom }}
+        <fa-icon [icon]="x_icon" (click)="onDeleteSymptom(symptom)"></fa-icon>
+    </div>
+    <h3 *ngIf="associated.length === 0" class="not-selected">No symptoms added</h3>
+</div>
+<div class="symptoms" *ngIf="listed_symptoms.length != 0">
     <h3>Select symptoms from the list below</h3>
     <div *ngFor="let symptom of listed_symptoms" (click)="onSymptomClick(symptom)" class="symptom">{{ symptom }}</div>
 </div>

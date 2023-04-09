@@ -133,6 +133,11 @@ button.back fa-icon {
     vertical-align: middle;
 }
 
+div.selected h3 {
+    margin: 0;
+    width: 50%;
+}
+
 @media only screen and (max-width: 500px) {
     div {
         width: 100%;

@@ -8,6 +8,8 @@ import { FormComponent } from './form/form.component';
 import { PredictComponent } from './predict/predict.component';
 import { ConsoleComponent } from './console/console.component';
 import { LoaderComponent } from './loader/loader.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -16,14 +18,16 @@ import { LoaderComponent } from './loader/loader.component';
     PredictComponent,
     ConsoleComponent,
     LoaderComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     FontAwesomeModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
