@@ -10,11 +10,11 @@ export class StorageService {
   constructor(private http: HttpClient) { }
 
   getdata(): Observable<Data[]> {
-    return this.http.get<Data[]>('http://127.0.0.1:5000/');
+    return this.http.get<Data[]>('https://glitchbanger.pythonanywhere.com/');
   }
 
   storedata(attacks: number, duration: number, symptoms: string[]): Observable<number> {
-    return this.http.post<number>(`http://127.0.0.1:5000/add/${attacks}/${duration}`, { "symptoms": symptoms });
+    return this.http.post<number>(`https://glitchbanger.pythonanywhere.com/add/${attacks}/${duration}`, { "symptoms": symptoms });
   }
 }
 

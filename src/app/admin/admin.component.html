@@ -16,6 +16,7 @@
             <td class="symptoms">
                 <!-- {{data.symptoms.slice(0, 5)}} -->
                 <p *ngFor="let symptom of data.symptoms">{{symptom}}</p>
+                <span *ngIf="data.symptoms.length === 0">No data</span>
             </td>
             <td>{{("" + data.prediction).slice(0,4)}}</td>
             <td>{{data.prediction > 0.5? "Migraine Without Aura" : "Probable Migraine"}}</td>
