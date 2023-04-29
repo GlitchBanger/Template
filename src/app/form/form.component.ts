@@ -141,7 +141,7 @@ export class FormComponent {
       this.our_symptoms
     ).subscribe(rs => {
       console.log(rs);
-      this.prediction = `${rs < 0.5 ? `Probable Migraine with probability ${`${100 * (1 - rs)}`.slice(0, 5)}` : `Migraine With aura with probability ${`${100 * rs}`.slice(0, 5)}`} %`;
+      this.prediction = `${rs < 0.5 ? `Probable Migraine with probability ${`${100 * (1 - rs)}`.slice(0, 5)}` : `Migraine Without aura with probability ${`${100 * rs}`.slice(0, 5)}`} %`;
       if (this.prediction) this.loading = false;
     }, err => {
       this.loading = false;
