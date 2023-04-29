@@ -19,6 +19,13 @@
     <input type="text" [(ngModel)]="others" (ngModelChange)="onOtherChange()" (keydown.enter)="onEnter()"
         placeholder="Search Symptoms" id="">
 </div>
+<div>
+    <div class="empty-container"></div>
+    <div class="empty-container">
+        <a (click)="onAddAll()">Add all</a>
+        <a (click)="onRemoveAll()">Remove all</a>
+    </div>
+</div>
 <div class="symptoms selected">
     <h3>Main Symptoms:</h3>
     <div *ngFor="let symptom of main_symptoms" class="symptom">

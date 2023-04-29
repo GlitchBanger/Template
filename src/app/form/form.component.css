@@ -138,6 +138,18 @@ div.selected h3 {
     width: 50%;
 }
 
+div.empty-container {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+a {
+    color: blueviolet;
+}
+
 @media only screen and (max-width: 500px) {
     div {
         width: 100%;

@@ -164,6 +164,14 @@ export class FormComponent {
     this.router.navigate(['']);
   }
 
+  onAddAll() {
+    this.all_symptoms.forEach(symptom => this.onSymptomClick(symptom));
+  }
+
+  onRemoveAll() {
+    this.all_symptoms.forEach(symptom => this.onDeleteSymptom(symptom));
+  }
+
 }
 
 function conatinsstring(search: string, original: string): boolean {
