@@ -148,6 +148,7 @@ div.empty-container {
 
 a {
     color: blueviolet;
+    text-decoration: underline;
 }
 
 @media only screen and (max-width: 500px) {
